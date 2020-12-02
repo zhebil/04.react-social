@@ -1,0 +1,63 @@
+.page-block {
+    &__title {
+        margin-bottom: 10px;
+    }
+}
+
+.photos {
+    &__title {}
+    &__body {}
+    &__slide {
+        padding: 5px;
+    }
+    &__wrapp {
+        box-shadow: 0 1px 5px rgba($color: #000000, $alpha: 0.5);
+        height: 255px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    &__img {
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            min-height: 200px;
+            object-fit: cover;
+        }
+    }
+    &__descr {
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__descr-item {
+        display: flex;
+        align-items: flex-start;
+        margin-right: 5px;
+    }
+    &__descr-icon {
+        margin-right: 5px;
+    }
+    &__descr-value {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 13px;
+        line-height: 1.2;
+        &--keywords {
+            font-size: 11px;
+            margin-top: 2px;
+        }
+        a:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}
+
+.f-50 {
+    flex: 50% 0 1;
+    max-width: 50%;
+}

@@ -1,0 +1,28 @@
+.comments {
+    border-top: 1px solid #b2b2b2;
+    &__item {
+        padding: 10px 0;
+        display: flex;
+        &:not(:last-child) {
+            border-bottom: 1px solid #b2b2b2;
+        }
+    }
+    &__photo {
+        margin-right: 10px;
+        img {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 70px;
+            height: 70px;
+        }
+    }
+    &__body {}
+    &__name {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    &__text {
+        font-size: 18px;
+        line-height: normal;
+    }
+}

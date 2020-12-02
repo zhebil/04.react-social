@@ -1,0 +1,110 @@
+.todo {
+    &__item {}
+    &__number {}
+    &__name {}
+    &__title {}
+    &__list {}
+}
+
+.completed {}
+
+.todos {
+    &__button {}
+}
+
+.home {
+    &__inner {}
+    &__title {
+        margin-bottom: 20px;
+    }
+    &__wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    &__right {
+        flex: 35% 0 1;
+        max-width: 35%;
+    }
+    &__person {}
+    &__name {
+        font-size: 32px;
+        line-height: 140%;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    &__img {
+        flex: 100% 0 1;
+        max-width: 100%;
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__details {
+        padding: 10px 0;
+    }
+    &__subtitle {
+        font-size: 24px;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+        background-color: #fff;
+        &:before {}
+        &:after {
+            content: "";
+            width: 70%;
+            display: block;
+            height: 1px;
+            background-color: #b2b2b2;
+            position: absolute;
+            top: 50%;
+            left: calc(30%);
+            z-index: -1;
+        }
+    }
+    &__table {
+        width: 100%;
+        &:not(:nth-last-child(2)) {
+            margin-bottom: 10px;
+        }
+        tr {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 140%;
+        }
+    }
+    &__prop {
+        flex: 40% 0 1;
+        max-width: 40%;
+        color: #b2b2b2;
+    }
+    &__value {
+        flex: 60% 0 1;
+        max-width: 60%;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        >* {
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    &__link {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__left {
+        padding: 0 0 20px 20px;
+        flex: 65% 0 1;
+        max-width: 65%;
+    }
+    &__todo {}
+}
+
+.container {}
+
+.title {}

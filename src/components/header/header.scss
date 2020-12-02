@@ -1,0 +1,24 @@
+.header {
+    background-color: #00a6a4;
+    &__inner {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__search {
+        margin-right: auto;
+    }
+}
+
+.logo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        fill: #ff9331
+    }
+}

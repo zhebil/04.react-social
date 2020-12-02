@@ -1,0 +1,63 @@
+.posts {
+    &__item {}
+}
+
+.post-item {
+    margin-bottom: 30px;
+    &__head {
+        display: flex;
+        border-bottom: 1px solid #b2b2b2;
+        padding-bottom: 10px;
+    }
+    &__user-photo {}
+    &__user-data {
+        margin-left: 10px;
+    }
+    &__user-name {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 140%;
+    }
+    &__body {
+        padding: 10px 0;
+    }
+    &__img {
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        margin-bottom: 10px;
+        border-bottom: 1px solid #b2b2b2;
+        padding-bottom: 10px;
+    }
+    &__title {
+        font-size: 28px;
+        text-align: center;
+        line-height: 140%;
+    }
+    &__text {
+        font-size: 20px;
+        line-height: 140%;
+    }
+    &__footer {}
+    &__button {
+        background-color: rgba($color: #00a6a4, $alpha: 0.05);
+        width: calc(100% + 20px);
+        margin-left: -10px;
+        margin-bottom: -10px;
+        border-radius: 0 0 5px 5px;
+        color: #5181b8;
+        padding: 10px;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        line-height: normal;
+        &:hover {
+            background-color: rgba($color: #00a6a4, $alpha: 0.2);
+        }
+        &:active,
+        &:focus {
+            background-color: rgba($color: #00a6a4, $alpha: 0.15);
+        }
+    }
+}

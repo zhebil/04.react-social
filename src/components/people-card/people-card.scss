@@ -1,0 +1,33 @@
+.peoples {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
+    &__item {
+        flex: calc(33.333% - 20px) 0 1;
+        max-width: calc(33.333% - 20px);
+        margin: 15px 10px;
+        display: flex;
+    }
+    &__photo {}
+    &__descr {
+        padding-left: 15px;
+        width: 100%;
+    }
+    &__name {
+        font-size: 18px;
+    }
+    &__mail {
+        margin: 5px 0 15px;
+        display: block;
+    }
+    &__link {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.page-block {}
+
+.link {}

@@ -20,9 +20,9 @@ const UserPhotos = (props) => {
         setFetch({ loading: false, error: false });
       }
     });
-    return ()=> {
-      mount = false
-    }
+    return () => {
+      mount = false;
+    };
   }, [jsonPlaceholderService, id]);
   if (fetch.loading) {
     return <Spinner />;
@@ -37,10 +37,10 @@ const UserPhotos = (props) => {
         <div className="photos__body">
           <Swiper
             slidesPerView={4}
-            // touchreleaseonedge={"true"}
-            freeMode={true}
+            // freeMode={true}
             // freeModeMomentum={false}
-            // setWrapperSize={true}
+            // freeModeMomentumBounce={false}
+            watchOverflow={true}
           >
             {photoData.map((item, i) => {
               return (
@@ -61,7 +61,7 @@ const UserPhotos = (props) => {
       </div>
 
       <div className="right__link">
-        <GoFull path="/todos" />
+        <GoFull path={`/${id}/photos`} />
       </div>
 
       <PhotoGalleryModal

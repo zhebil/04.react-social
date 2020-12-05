@@ -1,26 +1,14 @@
 .peoples {
     &__inner {}
-    &__title {
-        margin-bottom: 15px;
-    }
-    &__list {
-        padding: 20px;
-        border-radius: 15px;
-        background-color: #00a6a4;
-    }
-    &__item {
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: space-between;
-        color: white;
-    }
-    &__item-value {
-        width: 50%;
-    }
+    &__title {}
+    &__list {}
+    &__item {}
+    &__item-value {}
 }
 
 .container {}
 
 .title {
     font-size: 32px;
+    font-weight: 600;
 }

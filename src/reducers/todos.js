@@ -13,8 +13,12 @@ const deleteTodo = (todos, todoId) => {
   const itemIdx = todos.findIndex(({ id }) => id === todoId);
   return [...todos.slice(0, itemIdx), ...todos.slice(itemIdx + 1)];
 };
+const addTodo = (todos, todo) => {
+  return [...todos, todo];
+};
+
 const updateTodo = (item = {}, prop) => {
-  const { userId, id, title, completed, isFavourite } = item;
+  const { completed, isFavourite } = item;
 
   switch (prop) {
     case "isFavourite":
@@ -46,6 +50,8 @@ export default function todos(state, action) {
       return setCompleted(state.todos, action.payload);
     case "DELETE_TODO":
       return deleteTodo(state.todos, action.payload);
+    case "ADD_TODO":
+      return addTodo(state.todos, action.payload);
     default:
       return state.todos;
   }

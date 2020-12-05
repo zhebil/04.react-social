@@ -32,7 +32,7 @@ function Header(props) {
     props.jsonPlaceholderService.getUserPhoto(myId).then((data) => {
       setPhoto(data.hits[0].webformatURL);
     });
-  }, []);
+  }, [props.jsonPlaceholderService, myId]);
   const classes = useStyles();
   return (
     <header className="header">

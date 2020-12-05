@@ -10,7 +10,7 @@ export default function CommentsItem(props) {
         <img src={photo} alt={email} />
       </div>
       <div className="comments__body">
-        <h4 className="comments__name link"> {email}</h4>
+        <a href={`mailto:${email}`} className="comments__name link"> {email}</a>
         <p className="comments__text">{onTransformText(text)}</p>
       </div>
     </li>

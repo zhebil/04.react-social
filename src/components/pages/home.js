@@ -10,19 +10,24 @@ import "./home.scss";
 import PersonDetails from "../personDetails";
 import Todo from "../todo";
 import { UserPhotos } from "../photo";
-import UserPosts from "../posts"
+import UserPosts from "../posts";
 function Home(props) {
-  const { jsonPlaceholderService, id, todoLoaded, todos } = props;
+  const {
+    jsonPlaceholderService,
+    id = props.userId,
+    todoLoaded,
+    todos,
+  } = props;
+
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const [userData, setUserData] = useState({});
   const [userPhoto, setPhoto] = useState("");
+
   useEffect(() => {
     jsonPlaceholderService.getUserPhoto(id).then((data) => {
       setPhoto(data.hits[0].webformatURL);
     });
-  }, [jsonPlaceholderService, id]);
 
-  useEffect(() => {
     const fetching = async () => {
       setFetch({ loading: true, error: false });
 
@@ -53,9 +58,13 @@ function Home(props) {
               <PersonDetails peopleData={userData} userPhoto={userPhoto} />
             </div>
             <div className="home__left">
-              <Todo todos={todos} />
+              <Todo isPage={false} id={id} todos={todos} />
               <UserPhotos id={id} />
-              <UserPosts id={id} userPhoto={userPhoto} userName={userData.name} userMail={userData.email}
+              <UserPosts
+                id={id}
+                userPhoto={userPhoto}
+                userName={userData.name}
+                userMail={userData.email}
               />
             </div>
           </div>
@@ -68,6 +77,7 @@ function Home(props) {
 const mapStateToProps = (state) => {
   return {
     todos: state.todos,
+    userId: state.userInfo.userId,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -16,7 +16,8 @@ const useStyle = makeStyles(() => ({
       borderBottomColor: "#ff9331",
     },
     "&:hover:before": {
-      borderBottomWidth: "2px",borderBottomColor: "#ff9331",
+      borderBottomWidth: "2px",
+      borderBottomColor: "#ff9331",
     },
   },
   label: {
@@ -25,7 +26,7 @@ const useStyle = makeStyles(() => ({
 }));
 const Todo = (props) => {
   const classes = useStyle();
-  const { todos } = props;
+  const { todos, id, isPage } = props;
   const [sort, setSort] = useState("last");
   const sortedTodos = () => {
     switch (sort) {
@@ -73,16 +74,22 @@ const Todo = (props) => {
           </div>
         </div>
         <ul className="todo__list">
-          {sortedTodos()
-            .slice(0, 5)
-            .map((item, itemId) => {
-              return <TodoItem key={item.id} item={item} itemId={itemId} />;
-            })}
+          {isPage
+            ? sortedTodos().map((item, itemId) => {
+                return <TodoItem key={item.id} item={item} itemId={itemId} />;
+              })
+            : sortedTodos()
+                .slice(0, 5)
+                .map((item, itemId) => {
+                  return <TodoItem key={item.id} item={item} itemId={itemId} />;
+                })}
         </ul>
       </div>
-      <div className="right__link">
-        <GoFull path="/todos" />
-      </div>
+      {!isPage && (
+        <div className="right__link">
+          <GoFull path={`/${id}/todos`} />
+        </div>
+      )}
     </>
   );
 };

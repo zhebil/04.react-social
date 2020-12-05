@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
 import { compose } from "redux";
 
 import { withJsonPlaceholderService } from "../hoc";
+import PeopleCard from "../people-card";
 import { ErrorIndicator, GoBack, Spinner } from "../utility";
 import "./people.scss";
-function People({ jsonPlaceholderService, history, location }) {
+function People({ jsonPlaceholderService }) {
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const [users, setUsers] = useState({});
   useEffect(() => {
@@ -14,7 +14,7 @@ function People({ jsonPlaceholderService, history, location }) {
       setUsers(data);
       setFetch({ loading: false, error: false });
     });
-  }, []);
+  }, [jsonPlaceholderService]);
   if (fetch.loading) {
     return <Spinner />;
   }
@@ -22,27 +22,25 @@ function People({ jsonPlaceholderService, history, location }) {
     return <ErrorIndicator />;
   }
 
-  const listItem = users.map((item) => {
-    return (
-      <li className="peoples__item" key={item.id}>
-        <Link to={`home/${item.id}`} className="peoples__item-value">
-          Name: {item.name}
-        </Link>
-        <span className="peoples__item-value">email: {item.email}</span>
-      </li>
-    );
-  });
+  console.log(users);
+  // const listItem =
 
   return (
     <section className="peoples">
       <div className="container">
         <div className="peoples__inner">
-          <GoBack  path="/" />
+          <GoBack path="/" />
           <h1 className="peoples__title title">People Page</h1>
-          <ul className="peoples__list">{listItem}</ul>
+          <ul className="peoples__list">
+            {users.map((item) => {
+              return (
+               <PeopleCard key={item.id} people={item}/>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>
   );
 }
-export default compose(withRouter, withJsonPlaceholderService())(People);
+export default compose(withJsonPlaceholderService())(People);

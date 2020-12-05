@@ -18,6 +18,9 @@ export default class JsonPlaceholderService {
     return await res.json();
   };
   getUserPhoto = async (id) => {
+    if (id === 8) {
+      id = 11
+    }
     const res = await this.getPhotoResourse("&id=50" + id);
 
     return res;

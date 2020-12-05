@@ -1,5 +1,4 @@
 import { Fade, makeStyles, Modal } from "@material-ui/core";
-import Backdrop from "@material-ui/core/Backdrop";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
@@ -42,10 +41,7 @@ const PhotoGalleryModal = (props) => {
       open={open}
       onClose={handleClose}
       closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
+      
       aria-labelledby="Фотогалерея"
     >
       <Fade in={open}>

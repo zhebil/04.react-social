@@ -9,7 +9,7 @@ export default function PersonDetails({ peopleData, userPhoto }) {
     phone,
     address,
     company,
-    website,
+    // website,
   } = peopleData;
   const hidenContent = (
     <>

@@ -7,6 +7,21 @@ export const todoLoaded = (data) => {
     payload: data,
   };
 };
+
+export const deleteTodo = (id) => {
+  return {
+    type: "DELETE_TODO",
+    payload: id,
+  };
+};
+
+export const addTodo = (todo) => {
+  return {
+    type: "ADD_TODO",
+    payload: todo,
+  };
+};
+
 export const setFavourite = (id) => {
   return {
     type: "FAVOURITE_TODO",
@@ -30,14 +45,19 @@ export const commentsLoaded = (data, idx) => {
   return {
     type: "LOAD_COMMENTS",
     payload: data,
-    idx: idx
+    idx: idx,
   };
 };
 
-
-export const deleteTodo = (id) => {
+export const register = (id) => {
   return {
-    type: "DELETE_TODO",
+    type: "REGISTER",
     payload: id,
   };
 };
+
+export const getId = ()=> {
+  return {
+    type: "GET_ID"
+  }
+}

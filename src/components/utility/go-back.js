@@ -3,7 +3,7 @@ import React from "react";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import { IconButton, makeStyles } from "@material-ui/core";
 
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   arrowBack: {
     transform: "rotate(180deg)",

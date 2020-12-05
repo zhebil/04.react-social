@@ -1,0 +1,49 @@
+.footer {
+    margin-top: auto;
+    background-color: #006C6C;
+    color: white;
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 100px;
+        padding: 20px;
+    }
+    &__logo {
+        display: flex;
+        align-items: center;
+        p {
+            font-size: 24px;
+            padding-left: 15px;
+        }
+    }
+    &__contacts {
+        display: flex;
+        align-items: center;
+    }
+    &__text {
+        font-size: 18px;
+        margin-right: 20px;
+    }
+    &__item {
+        border-radius: 50%;
+        background-color: #fff;
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            font-size: 35px;
+        }
+        &--telegram {
+            color: #5682a3;
+        }
+        &--inst {}
+        &--github {
+            color: black;
+        }
+    }
+    &__item-img {}
+}

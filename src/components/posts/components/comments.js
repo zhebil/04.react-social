@@ -24,7 +24,7 @@ const Comments = (props) => {
       setFetch({ loading: false, error: false });
     };
     fetching();
-  }, [jsonPlaceholderService, id, commentsLoaded]);
+  }, [jsonPlaceholderService, id, idx,commentsLoaded]);
 
   console.log(comments);
 

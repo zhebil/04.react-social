@@ -7,7 +7,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import { Home, People, Todos, Welcome, Photos } from "../pages";
+import { Home, People, Todos, Welcome, PhotoPage, PhotoSearch } from "../pages";
 import Footer from "../footer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -51,7 +51,13 @@ function App({ userId, getId }) {
           <Todos/>
         </Route>
         <Route path="/:id/photos">
-          <Photos/>
+          <PhotoPage/>
+        </Route>
+        <Route path="/photos/start">
+          <PhotoSearch/>
+        </Route>
+        <Route path="/photos/:params">
+          <PhotoSearch/>
         </Route>
       </Switch>
       <Footer />

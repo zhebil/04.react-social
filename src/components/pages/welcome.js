@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { register } from "../../actions";
-import "./welcome.scss";
+import "./scss/welcome.scss";
 const useStyles = makeStyles(() => ({
   button: {
     backgroundColor: "#ff9331",

@@ -3,6 +3,7 @@ import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles(() => ({
   icon: {
@@ -41,9 +42,9 @@ const PhotoCard = (props) => {
           </div>
           <p className="photos__descr-value photos__descr-value--keywords">
             {tags.split(" ").map((item, i) => (
-              <a key={i} href="/" className="link">
+              <Link key={i} to={`/photos/q=${item}`} className="link">
                 {item}
-              </a>
+              </Link>
             ))}
           </p>
         </div>

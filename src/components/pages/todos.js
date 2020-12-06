@@ -70,7 +70,7 @@ const Todos = ({ jsonPlaceholderService, todoLoaded, todos, addTodo }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    if (e.target.todo.value.length === 0) {
+    if (e.target.todo.value.trim().length === 0) {
       setInputFocus();
       return;
     }

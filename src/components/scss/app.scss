@@ -75,3 +75,11 @@ body {
     flex: 100% 0 1;
     max-width: 100%;
 }
+
+.clear {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}

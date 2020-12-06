@@ -5,7 +5,7 @@ import { compose } from "redux";
 import { withJsonPlaceholderService } from "../hoc";
 import PeopleCard from "../people-card";
 import { ErrorIndicator, GoBack, Spinner } from "../utility";
-import "./people.scss";
+import "./scss/people.scss";
 function People({ jsonPlaceholderService }) {
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const [users, setUsers] = useState({});

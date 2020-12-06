@@ -11,12 +11,12 @@ const useStyles = makeStyles(() => ({
     color: "inherit",
   },
 }));
-export default function GoFull({ path }) {
+export default function GoFull({ path, text="Посмотреть всё"}) {
   const classes = useStyles();
   return (
     <Link className="icon-link" to={path}>
-      See all
-      <IconButton className={classes.arrowBack} aria-label="see all">
+      {text}
+      <IconButton className={classes.arrowBack} aria-label={text}>
         <TrendingFlatIcon />
       </IconButton>
     </Link>

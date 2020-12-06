@@ -1,0 +1,16 @@
+.search {
+    &__body {}
+    &__row {
+        float: left;
+        width: calc(100% - 240px);
+    }
+    &__panel {
+        float: right;
+        width: 220px;
+    }
+    &__result {
+        float: left;
+        margin-top: 15px;
+        width: calc(100% - 240px);
+    }
+}

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withJsonPlaceholderService } from "../hoc";
 import { todoLoaded } from "../../actions";
-import "./home.scss";
+import "./scss/home.scss";
 import PersonDetails from "../personDetails";
 import Todo from "../todo";
 import { UserPhotos } from "../photo";

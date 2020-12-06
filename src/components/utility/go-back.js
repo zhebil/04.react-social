@@ -27,7 +27,7 @@ function GoBack({ path, history }) {
       <IconButton className={classes.arrowBack} aria-label="go back">
         <TrendingFlatIcon />
       </IconButton>
-      Go back
+      Назад
     </a>
   );
 }

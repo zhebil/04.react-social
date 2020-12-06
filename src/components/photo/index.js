@@ -1,2 +1,3 @@
 import UserPhotos from "./user-photos"
-export {UserPhotos}
+import Photos from "./photos"
+export {UserPhotos, Photos}

@@ -19,7 +19,7 @@ export default class JsonPlaceholderService {
   };
   getUserPhoto = async (id) => {
     if (id === 8) {
-      id = 11
+      id = 11;
     }
     const res = await this.getPhotoResourse("&id=50" + id);
 
@@ -28,6 +28,11 @@ export default class JsonPlaceholderService {
   getUserPhotos = async (id) => {
     const res = await this.getPhotoResourse("&orientation=vertical&page=" + id);
 
+    return res;
+  };
+  getSearchPhotos = async (params) => {
+    const res = await this.getPhotoResourse(params);
+    console.log(res);
     return res;
   };
   getPostsPhoto = async (id) => {
@@ -72,7 +77,7 @@ export default class JsonPlaceholderService {
     const res = await this.getResourse(`/posts`);
     return res;
   };
-  
+
   getUserPosts = async (id) => {
     const res = await this.getResourse(`/user/${id}/posts`);
     return res;
@@ -82,3 +87,4 @@ export default class JsonPlaceholderService {
     return res;
   };
 }
+

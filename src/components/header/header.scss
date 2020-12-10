@@ -1,13 +1,22 @@
 .header {
     background-color: #00a6a4;
+    z-index: 100;
+    position: relative;
     &__inner {
         height: 100px;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    &__search {
+    &__logo {
+        display: flex;
         margin-right: auto;
+        align-items: center;
+        color: white;
+        p {
+            font-size: 24px;
+            padding-left: 15px;
+        }
     }
 }
 

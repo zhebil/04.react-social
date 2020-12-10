@@ -26,8 +26,7 @@ const Comments = (props) => {
     fetching();
   }, [jsonPlaceholderService, id, idx,commentsLoaded]);
 
-  console.log(comments);
-
+  
   const nullMessage = (<p className="comments__message">Коментарии отсутствуют</p>)
 
   if (fetch.loading) {

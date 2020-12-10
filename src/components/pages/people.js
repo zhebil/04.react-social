@@ -22,8 +22,6 @@ function People({ jsonPlaceholderService }) {
     return <ErrorIndicator />;
   }
 
-  console.log(users);
-  // const listItem =
 
   return (
     <section className="peoples">

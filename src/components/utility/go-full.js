@@ -10,15 +10,28 @@ const useStyles = makeStyles(() => ({
     marginLeft: "10px",
     color: "inherit",
   },
+  arrowLeft: {
+    transform: "rotate(180deg)"
+  }
 }));
-export default function GoFull({ path, text="Посмотреть всё"}) {
+export default function GoFull({
+  path,
+  text = "Посмотреть всё",
+  direction = "right",
+}) {
   const classes = useStyles();
   return (
     <Link className="icon-link" to={path}>
-      {text}
-      <IconButton className={classes.arrowBack} aria-label={text}>
+      {direction === "right" ? text : null}
+      <IconButton
+        className={`${classes.arrowBack} ${
+          direction === "left" ? classes.arrowLeft : null
+        }`}
+        aria-label={text}
+      >
         <TrendingFlatIcon />
       </IconButton>
+      {direction === "left" ? text : null}
     </Link>
   );
 }

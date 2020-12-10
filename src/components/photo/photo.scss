@@ -55,6 +55,16 @@
             margin-right: 5px;
         }
     }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
+    &__item {
+        flex: calc(33.333% - 20px) 0 1;
+        max-width: calc(33.333% - 20px);
+        margin: 10px;
+    }
 }
 
 .f-50 {

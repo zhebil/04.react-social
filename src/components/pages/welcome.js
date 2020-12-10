@@ -39,6 +39,9 @@ const useStyles = makeStyles(() => ({
     marginLeft: "auto",
   },
 }));
+
+
+
 function Welcome({ onRegister }) {
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory()

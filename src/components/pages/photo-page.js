@@ -29,7 +29,6 @@ const PhotoPage = (props) => {
   if (fetch.error) {
     return <ErrorIndicator />;
   }
-  console.log(photoData);
   return (
     <div className="page-block photos__page">
       <Photos photoData={photoData} />

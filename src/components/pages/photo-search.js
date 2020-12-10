@@ -41,9 +41,10 @@ const PhotoSearch = (props) => {
   const classes = useStyle();
   const { jsonPlaceholderService } = props;
   const [value, setValue] = useState("");
+  const [order, setOrder] = useState("popular");
   const match = useRouteMatch("/photos/:params");
   const params = match.params.params;
-  const [photoData, setPhotoData] = useState([]);
+  const [photoData, setPhotoData] = useState({});
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const [inputRef, setInputFocus] = useFocus();
   const history = useHistory();
@@ -51,14 +52,14 @@ const PhotoSearch = (props) => {
     if (params === "start") {
     } else {
       setFetch({ loading: true, error: false });
-   
+
       jsonPlaceholderService
-        .getSearchPhotos(`&per_page=50&${params}`)
+        .getSearchPhotos(`&per_page=50&page=1&${params}`)
         .then((data) => {
           if (data.hits.length === 0) {
             throw new Error();
           }
-          setPhotoData(data.hits);
+          setPhotoData(data);
           setFetch({ loading: false, error: false });
         })
         .catch((err) => {
@@ -67,8 +68,34 @@ const PhotoSearch = (props) => {
         });
     }
   }, [params, jsonPlaceholderService]);
-
-  const photos =
+  const photos = () => {
+    let idx = 1;
+    if (photoData.total > photoData.hits.length) {
+      let regex = /(?<=page=)\d+/;
+      if (params.match(regex)) {
+        idx = params.match(regex)[0];
+      }
+    }
+    return (
+      <>
+        {idx > 1 && (
+          <GoFull
+            text="Назад"
+            direction="left"
+            path={params.replace(/&page=.+/, "") + "&page=" + (idx - 1)}
+          />
+        )}
+        <Photos photoData={photoData.hits} />
+        {photoData.total > photoData.hits.length && (
+          <GoFull
+            text="Следующая страница"
+            path={params.replace(/&page=.+/, "") + "&page=" + (+idx + 1)}
+          />
+        )}
+      </>
+    );
+  };
+  const content =
     params === "start" ? (
       <p className="search__message">Введите значение для поиска</p>
     ) : fetch.loading ? (
@@ -76,10 +103,7 @@ const PhotoSearch = (props) => {
     ) : fetch.error ? (
       <ErrorIndicator />
     ) : (
-      <>
-        <Photos photoData={photoData} />
-        <GoFull text="Следующая страница" path={params.replace(/&page=.+/, "") + "&page=" + 2} />
-      </>
+      photos()
     );
 
   const onSubmit = (e) => {
@@ -94,8 +118,7 @@ const PhotoSearch = (props) => {
     const imageType = e.target.image_type.value;
     const requestParams = `q=${q}&lang=${lang}&order=${order}&image_type=${imageType}`;
     history.push(`/photos/${requestParams}`);
-    console.log(requestParams);
-  };
+   };
   return (
     <>
       <div className="container">
@@ -155,11 +178,11 @@ const PhotoSearch = (props) => {
               <Select
                 name={"order"}
                 labelId="order"
-                value={"popular"}
+                value={order}
                 className={classes.select}
-                // onChange={(event) => {
-                //   setSort(event.target.value);
-                // }}
+                onChange={(event) => {
+                  setOrder(event.target.value);
+                }}
               >
                 <MenuItem value={"popular"}>Сначала популрные</MenuItem>
                 <MenuItem value={"latest"}>Сначала новые</MenuItem>
@@ -196,8 +219,16 @@ const PhotoSearch = (props) => {
                 />
               </RadioGroup>
             </FormControl>
+            <Button
+              type="submit"
+              variant="contained"
+              className={classes.button}
+            >
+              Найти
+            </Button>
+          
           </div>
-          <div className="search__result page-block">{photos}</div>
+          <div className="search__result page-block">{content}</div>
         </form>
       </div>
     </>

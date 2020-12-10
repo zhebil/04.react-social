@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import Header from "../header";
 import "../scss/app.scss";
 import {
@@ -9,19 +9,24 @@ import {
 } from "react-router-dom";
 import { Home, People, Todos, Welcome, PhotoPage, PhotoSearch } from "../pages";
 import Footer from "../footer";
+import { PrivateRoute } from "../utility";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getId } from "../../actions";
 
 function App({ userId, getId }) {
-  if (!userId) {
-    getId();
-  }
-  
+  // if (!userId) {
+  getId();
+  // if (userId === null) {
+  // console.log(history);
+  // history.push("/sign-up");
+  // }
+  // console.log(userId);
+  // }
+
   return (
     <Router>
-      {/* {userId ? null : <Redirect to="/sign-up" />} */}
-
+      {/* {!userId? <Redirect to="/sign-up"/> : null} */}
       <Header />
 
       <Switch>
@@ -31,33 +36,24 @@ function App({ userId, getId }) {
         <Route path="/sign-up">
           <Welcome />
         </Route>
-        <Route
-          path="/home"
-          exact
-          render={() => {
-            return <Home id={userId} />;
-          }}
-        />
-        <Route
-          path="/home/:id"
-          exact
-          render={({ match }) => {
-            const { id } = match.params;
-            return <Home id={id} />;
-          }}
-        />
+        <PrivateRoute userId={userId} path="/home" exact>
+          <Home id={userId} />
+        </PrivateRoute>
+        <PrivateRoute userId={userId} path="/home/:id" exact>
+          <Home />
+        </PrivateRoute>
         <Route path="/people" component={People} />
         <Route path="/:id/todos">
-          <Todos/>
+          <Todos />
         </Route>
         <Route path="/:id/photos">
-          <PhotoPage/>
+          <PhotoPage />
         </Route>
         <Route path="/photos/start">
-          <PhotoSearch/>
+          <PhotoSearch />
         </Route>
         <Route path="/photos/:params">
-          <PhotoSearch/>
+          <PhotoSearch />
         </Route>
       </Switch>
       <Footer />

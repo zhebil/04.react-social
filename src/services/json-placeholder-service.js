@@ -32,7 +32,6 @@ export default class JsonPlaceholderService {
   };
   getSearchPhotos = async (params) => {
     const res = await this.getPhotoResourse(params);
-    console.log(res);
     return res;
   };
   getPostsPhoto = async (id) => {
@@ -87,4 +86,3 @@ export default class JsonPlaceholderService {
     return res;
   };
 }
-

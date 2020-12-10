@@ -5,6 +5,10 @@ body {
     font-family: "Roboto";
 }
 
+html {
+    // scroll-behavior: smooth;
+}
+
 #root {
     height: 100%;
     display: flex;

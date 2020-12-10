@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { useState } from "react";
-import { ErrorIndicator, GoBack, Spinner } from "../utility";
 
+import { ErrorIndicator, GoBack, Spinner } from "../utility";
+import { useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withJsonPlaceholderService } from "../hoc";
@@ -12,9 +12,11 @@ import Todo from "../todo";
 import { UserPhotos } from "../photo";
 import UserPosts from "../posts";
 function Home(props) {
+  const match = useRouteMatch("/home/:id");
+
   const {
     jsonPlaceholderService,
-    id = props.userId,
+    id = props.userId || match.params.id,
     todoLoaded,
     todos,
   } = props;

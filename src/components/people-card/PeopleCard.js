@@ -51,7 +51,7 @@ const PeopleCard = ({ people, jsonPlaceholderService }) => {
         <img src={photo} alt={name} />
       </div>
       <div className="peoples__descr">
-        <Link to={`home/${id}`} className="peoples__name">
+        <Link to={`/home/${id}`} className="peoples__name">
           {name}
         </Link>
         <a href={`mailto:${email}`} className="peoples__mail link">{email}</a>
@@ -63,7 +63,7 @@ const PeopleCard = ({ people, jsonPlaceholderService }) => {
             component={Link}
             variant="outlined"
             color="secondary"
-            to={`home/${id}`}
+            to={`/${id}/photos`}
           >
             Фото
           </Button>

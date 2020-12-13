@@ -1,19 +1,24 @@
-const express = require('express');
-const favicon = require('express-favicon');
-const path = require('path');
-const port = process.env.PORT || 8080;
+const express = require("express");
+const path = require("path")
 const app = express();
-app.use(favicon(__dirname + '/build/favicon.png')); 
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
+// if (process.env.NODE_ENV=== "production") {
+  app.use("/", express.static(path.join(__dirname, "build")))
+  app.get("*", (req, res)=> {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"))
+  })
+// }
 
-//простой тест сервера
-app.get('/ping', function (req, res) {
- return res.send('pong');
-});
+const PORT = process.env.PORT || 5000;
 
-//обслуживание html
-app.get('/*', function (req, res) {
-res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.listen(port);
+async function start() {
+  try {
+       app.listen(PORT, () => {
+      console.log("app started on port"+ PORT);
+    });
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
+  }
+}
+
+start();

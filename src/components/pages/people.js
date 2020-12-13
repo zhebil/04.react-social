@@ -13,7 +13,10 @@ function People({ jsonPlaceholderService }) {
     jsonPlaceholderService.getAllUsers().then((data) => {
       setUsers(data);
       setFetch({ loading: false, error: false });
-    });
+    }).catch(e=> {
+      console.log(e);
+      setFetch({loading: false, error: true})
+    });;
   }, [jsonPlaceholderService]);
   if (fetch.loading) {
     return <Spinner />;
@@ -21,7 +24,6 @@ function People({ jsonPlaceholderService }) {
   if (fetch.error) {
     return <ErrorIndicator />;
   }
-
 
   return (
     <section className="peoples">
@@ -31,9 +33,7 @@ function People({ jsonPlaceholderService }) {
           <h1 className="peoples__title title">People Page</h1>
           <ul className="peoples__list">
             {users.map((item) => {
-              return (
-               <PeopleCard key={item.id} people={item}/>
-              );
+              return <PeopleCard key={item.id} people={item} />;
             })}
           </ul>
         </div>

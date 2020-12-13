@@ -20,9 +20,46 @@
     &__name {
         font-size: 20px;
         margin-bottom: 10px;
+        display: block;
     }
     &__text {
-        font-size: 18px;
+        font-size: 14px;
         line-height: normal;
     }
+}
+
+.my-node-appear {
+    opacity: 0.01;
+    height: 1px;
+    overflow: hidden;
+}
+
+.my-node-appear-active {
+    opacity: 1;
+    height: 480px;
+    transition: all .5s ease;
+}
+
+.my-node-enter {
+    opacity: 0.01;
+    height: 1px;
+    overflow: hidden;
+}
+
+.my-node-enter-active {
+    opacity: 1;
+    height: 480px;
+    transition: all .5s ease;
+}
+
+.my-node-exit {
+    opacity: 1;
+    height: 480px;
+}
+
+.my-node-exit-active {
+    opacity: 0.01;
+    height: 1px;
+    overflow: hidden;
+    transition: all .5s ease;
 }

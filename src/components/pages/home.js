@@ -13,18 +13,15 @@ import { UserPhotos } from "../photo";
 import UserPosts from "../posts";
 function Home(props) {
   const match = useRouteMatch("/home/:id");
-
-  const {
-    jsonPlaceholderService,
-    id = props.userId || match.params.id,
-    todoLoaded,
-    todos,
-  } = props;
-
+  const { jsonPlaceholderService, todoLoaded, todos, userId } = props;
+  let { id = userId } = props;
+  if (match) {
+    id = match.params.id;
+  }
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const [userData, setUserData] = useState({});
   const [userPhoto, setPhoto] = useState("");
-
+console.log("home render");
   useEffect(() => {
     jsonPlaceholderService.getUserPhoto(id).then((data) => {
       setPhoto(data.hits[0].webformatURL);
@@ -35,10 +32,16 @@ function Home(props) {
 
       await jsonPlaceholderService
         .getUser(id)
-        .then((data) => setUserData(data));
+        .then((data) => setUserData(data)).catch(e=> {
+          console.log(e);
+          setFetch({loading: false, error: true})
+        });
       await jsonPlaceholderService
         .getUserTodos(id)
-        .then((data) => todoLoaded(data));
+        .then((data) => todoLoaded(data)).catch(e=> {
+          console.log(e);
+          setFetch({loading: false, error: true})
+        });;
       setFetch({ loading: false, error: false });
     };
     fetching();
@@ -54,7 +57,7 @@ function Home(props) {
       <div className="container">
         <div className="home__inner">
           <GoBack />
-          <h1 className="title home__title">Home page</h1>
+          <h1 className="title home__title">Домашная страница</h1>
           <div className="home__wrapper">
             <div className="home__right">
               <PersonDetails peopleData={userData} userPhoto={userPhoto} />

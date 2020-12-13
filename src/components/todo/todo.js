@@ -9,6 +9,7 @@ import {
   Select,
 } from "@material-ui/core";
 
+import FlipMove from "react-flip-move";
 const useStyle = makeStyles(() => ({
   select: {
     height: "40px",
@@ -24,6 +25,7 @@ const useStyle = makeStyles(() => ({
     fontSize: "",
   },
 }));
+
 const Todo = (props) => {
   const classes = useStyle();
   const { todos, id, isPage } = props;
@@ -73,17 +75,27 @@ const Todo = (props) => {
             </FormControl>
           </div>
         </div>
-        <ul className="todo__list">
-          {isPage
-            ? sortedTodos().map((item, itemId) => {
-                return <TodoItem key={item.id} item={item} itemId={itemId} />;
+        <FlipMove
+          appearAnimation={true}
+          typeName={"ul"}
+          className={isPage ? "todo__alt-list" : "todo__list"}
+        >
+          {todos.length > 0 ? (
+            isPage ? (
+              sortedTodos().map((todo, itemId) => {
+                return <TodoItem key={todo.id} item={todo} itemId={itemId} />;
               })
-            : sortedTodos()
+            ) : (
+              sortedTodos()
                 .slice(0, 5)
                 .map((item, itemId) => {
                   return <TodoItem key={item.id} item={item} itemId={itemId} />;
-                })}
-        </ul>
+                })
+            )
+          ) : (
+            <p className="todos__message">Список дел пустой</p>
+          )}
+        </FlipMove>
       </div>
       {!isPage && (
         <div className="right__link">

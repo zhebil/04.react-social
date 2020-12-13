@@ -1,5 +1,5 @@
 import { IconButton, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { forwardRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { deleteTodo, setCompleted, setFavourite } from "../../../../actions";
@@ -19,17 +19,12 @@ const useStyle = makeStyles(() => ({
     color: "#ff9331",
   },
 }));
-function TodoItem({ item, itemId, setFavourite, setCompleted, deleteTodo }) {
+function Item({ item, itemId, setFavourite, setCompleted, deleteTodo }) {
   const classes = useStyle();
-  const { title, completed, id, isFavourite } = item;
-
+  const { title, id, isFavourite } = item;
+  const [disabled, setDisabled] = useState(false);
   return (
-    <li
-      className={`todo__item 
-      ${completed ? "todo__completed" : ""} 
-      ${isFavourite ? "todo__favourite" : ""}
-      `}
-    >
+    <>
       <div className="todo__number">{itemId + 1}</div>
       <div
         onClick={() => {
@@ -56,14 +51,16 @@ function TodoItem({ item, itemId, setFavourite, setCompleted, deleteTodo }) {
         <IconButton
           onClick={() => {
             deleteTodo(id);
+            setDisabled(true);
           }}
+          disabled={disabled}
           className={classes.button}
           aria-label="delete"
         >
           <DeleteIcon />
         </IconButton>
       </div>
-    </li>
+    </>
   );
 }
 
@@ -78,4 +75,17 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(TodoItem);
+const TodoItem = connect(null, mapDispatchToProps)(Item);
+
+const TodoItemRef = forwardRef((props, ref) => (
+  <li
+    className={`todo__item 
+  ${props.item.completed ? "todo__completed" : ""} 
+  ${props.item.isFavourite ? "todo__favourite" : ""}
+  `}
+    ref={ref}
+  >
+    <TodoItem item={props.item} itemId={props.itemId} />
+  </li>
+));
+export default TodoItemRef;

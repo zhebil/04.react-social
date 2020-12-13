@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
+import { compose } from "redux";
 import { withJsonPlaceholderService } from "../hoc";
 import { Photos } from "../photo";
-import { ErrorIndicator, Spinner } from "../utility";
+import { ErrorIndicator, GoBack, Spinner } from "../utility";
 
 const PhotoPage = (props) => {
-  const { jsonPlaceholderService } = props;
+  const { jsonPlaceholderService, myId } = props;
   const [photoData, setPhotoData] = useState([]);
   const [fetch, setFetch] = useState({ loading: true, error: false });
   const match = useRouteMatch("/:id/photos");
@@ -18,7 +20,10 @@ const PhotoPage = (props) => {
         setPhotoData(data.hits);
         setFetch({ loading: false, error: false });
       }
-    });
+    }).catch(e=> {
+      console.log(e);
+      setFetch({loading: false, error: true})
+    });;
     return () => {
       mount = false;
     };
@@ -30,10 +35,26 @@ const PhotoPage = (props) => {
     return <ErrorIndicator />;
   }
   return (
-    <div className="page-block photos__page">
-      <Photos photoData={photoData} />
-    </div>
+    <section className="photos__page">
+      <div className="photos">
+        <div className="container">
+          <GoBack />
+
+          <h2 className="photos__title title">
+            {myId === id ? "Мои фото" : "Фото"}
+          </h2>
+          <div className="page-block">
+            <Photos cardCount={4} photoData={photoData} />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default withJsonPlaceholderService()(PhotoPage);
+const mapStateToProps = (state) => ({ myId: state.userInfo.userId });
+
+export default compose(
+  connect(mapStateToProps),
+  withJsonPlaceholderService()
+)(PhotoPage);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import { SeeMore } from "../../utility";
 import { onTransformText } from "../../utility/functions";
 import Comments from "./comments";
@@ -9,7 +10,7 @@ const Post = (props) => {
   const { postPhoto: image, title, body: postText, id: postId } = post;
   const [isLarge, setIsLarge] = useState(false);
   const [viewComments, setViewComments] = useState(false);
- 
+
   useEffect(() => {
     if (postText.length > 400) {
       setIsLarge(true);
@@ -57,9 +58,24 @@ const Post = (props) => {
         ) : null}
       </div>
       <div className="post-item__footer">
-       
-        {viewComments ? <Comments id={postId} idx={idx} /> : null}
-        <button onClick={()=> {setViewComments(!viewComments)}} className="post-item__button">
+        <CSSTransition
+          classNames="my-node"
+          in={viewComments}
+          timeout={5000}
+          unmountOnExit
+          appear={true}
+        >
+          <div>
+            <Comments id={postId} idx={idx} />
+          </div>
+        </CSSTransition>
+
+        <button
+          onClick={() => {
+            setViewComments(!viewComments);
+          }}
+          className="post-item__button"
+        >
           Комментарии
         </button>
       </div>

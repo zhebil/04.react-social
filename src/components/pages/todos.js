@@ -20,6 +20,8 @@ const useStyle = makeStyles(() => ({
   button: {
     backgroundColor: "#ff9331",
     color: "white",
+    height: "50px",
+    fontSize: "16px",
     "&:hover": {
       backgroundColor: "#a65810",
     },
@@ -27,10 +29,19 @@ const useStyle = makeStyles(() => ({
   star: {
     stroke: "#00a6a4",
     color: "transparent",
+    fontSize: "2.5rem",
   },
   activeStar: {
     stroke: "#ff9331",
     color: "#ff9331",
+  },
+  input: {
+    "& label": {
+      fontSize: "18px",
+    },
+    "& input": {
+      fontSize: "18px",
+    },
   },
 }));
 
@@ -56,16 +67,16 @@ const Todos = ({ jsonPlaceholderService, todoLoaded, todos, addTodo }) => {
   const onTodoChange = (e) => {
     setValue(e.target.value);
   };
-  const getId= ()=> {
-      return Math.floor(Math.random() * (100000 - 500 + 1)) + 500
-  }
+  const getId = () => {
+    return Math.floor(Math.random() * (100000 - 500 + 1)) + 500;
+  };
   const getTodo = (todo, isFavourite) => {
     return {
       completed: false,
       isFavourite: isFavourite,
       title: todo,
       userId: id,
-      id: getId()
+      id: getId(),
     };
   };
   const onSubmit = (e) => {
@@ -85,40 +96,43 @@ const Todos = ({ jsonPlaceholderService, todoLoaded, todos, addTodo }) => {
     return <ErrorIndicator />;
   }
   return (
-    <>
-      <div className="todo__page">
+    <section className="todo__page">
+      <div className="container">
         <GoBack />
-
-        <Todo isPage={true} todos={todos} />
-        <form onSubmit={onSubmit} className="todo__input">
-          <TextField
-            inputProps={{ ref: inputRef }}
-            name="todo"
-            value={value}
-            onChange={onTodoChange}
-            fullWidth
-            label="Что мне нужно сделать?"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                icon={<StarIcon className={`${classes.star} }`} />}
-                checkedIcon={
-                  <StarIcon
-                    className={`${classes.star} ${classes.activeStar}`}
-                  />
-                }
-                name="isFavourite"
-              />
-            }
-            label="Отметить важным"
-          />
+        <h1 className="title">Список дел</h1>
+        <form onSubmit={onSubmit} className="todo__input page-block">
+          <div className="todo__input-row">
+            <TextField
+              inputProps={{ ref: inputRef }}
+              name="todo"
+              value={value}
+              className={classes.input}
+              onChange={onTodoChange}
+              fullWidth
+              label="Что мне нужно сделать?"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<StarIcon className={`${classes.star}`} />}
+                  checkedIcon={
+                    <StarIcon
+                      className={`${classes.star} ${classes.activeStar}`}
+                    />
+                  }
+                  name="isFavourite"
+                />
+              }
+            />
+          </div>
           <Button type="submit" variant="contained" className={classes.button}>
             Добавить в список
           </Button>
         </form>
+
+        <Todo isPage={true} todos={todos} />
       </div>
-    </>
+    </section>
   );
 };
 

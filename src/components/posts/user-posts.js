@@ -26,13 +26,19 @@ const UserPosts = (props) => {
 
     const fetching = async () => {
       const postsFetchData = { postItems: [], postPhotos: {} };
-      await jsonPlaceholderService.getUserPosts(id).then((data) => {
-        postsFetchData.postItems = data;
-      });
-      await jsonPlaceholderService.getPostsPhoto(id).then((data) => {
-        postsFetchData.postPhotos = data;
-      });
-        postsLoaded(postsFetchData);
+      try {
+        await jsonPlaceholderService.getUserPosts(id).then((data) => {
+          postsFetchData.postItems = data;
+        });
+        await jsonPlaceholderService.getPostsPhoto(id).then((data) => {
+          postsFetchData.postPhotos = data;
+        });
+      } catch (e) {
+        console.log(e);
+        setFetch({ loading: false, error: true });
+      }
+
+      postsLoaded(postsFetchData);
       if (mounted) {
         setFetch({ loading: false, error: false });
       }

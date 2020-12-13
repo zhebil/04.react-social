@@ -13,14 +13,14 @@ export default function PersonDetails({ peopleData, userPhoto }) {
   } = peopleData;
   const hidenContent = (
     <>
-      <h2 className="home__subtitle">Карьера:</h2>
+      <h2 className="home__subtitle page-block__title">Карьера:</h2>
       <table className="home__table">
         <tbody>
           <tr>
             <td className="home__prop">Компания:</td>
             <td className="home__value">
               <a className="link" href="/">
-                {" "}
+                
                 {company.name}
               </a>
             </td>
@@ -51,7 +51,7 @@ export default function PersonDetails({ peopleData, userPhoto }) {
           </tr>
         </tbody>
       </table>
-      <h2 className="home__subtitle">Адресс:</h2>
+      <h2 className="home__subtitle page-block__title">Адресс:</h2>
       <table className="home__table">
         <tbody>
           <tr>
@@ -88,7 +88,7 @@ export default function PersonDetails({ peopleData, userPhoto }) {
       </div>
 
       <div className="home__details">
-        <h2 className="home__subtitle">Обо мне:</h2>
+        <h2 className="home__subtitle page-block__title">Обо мне:</h2>
         <table className="home__table">
           <tbody>
             <tr>

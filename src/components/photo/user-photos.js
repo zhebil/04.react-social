@@ -19,7 +19,10 @@ const UserPhotos = (props) => {
         setPhotoData(data.hits);
         setFetch({ loading: false, error: false });
       }
-    });
+    }).catch(e=> {
+      console.log(e);
+      setFetch({loading: false, error: true})
+    });;
     return () => {
       mount = false;
     };

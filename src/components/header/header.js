@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import "./header.scss";
-import {  makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
 import { Logo } from "../icons";
 import Menu from "../menu";
 import { withJsonPlaceholderService } from "../hoc";
-
+import { Mobile } from "../utility/media";
 const useStyles = makeStyles(() => ({
   avatar: {
     width: "70px",
@@ -21,13 +21,20 @@ const useStyles = makeStyles(() => ({
       backgroundColor: "#a65810",
     },
   },
-  
+  secondButton: {
+    backgroundColor: "#a65810",
+    marginLeft: "15px",
+    "&:hover": {
+      backgroundColor: "#ff9331",
+    },
+  },
 }));
 function Header(props) {
   const myId = window.localStorage.getItem("myId");
 
-  const [openMenu, setOpenMenu] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false);
   const [userPhoto, setPhoto] = useState("");
+  const history = useHistory();
   useEffect(() => {
     if (myId) {
       props.jsonPlaceholderService.getUserPhoto(myId).then((data) => {
@@ -46,7 +53,12 @@ function Header(props) {
             </div>
             <p>React Social</p>
           </Link>
-         
+          <Menu
+            closeMenu={() => {
+              setOpenMenu(false);
+            }}
+            myId={myId}
+          />
           {myId ? (
             <>
               <Avatar src={userPhoto} alt="ava" className={classes.avatar} />
@@ -57,6 +69,21 @@ function Header(props) {
                 className={classes.myPageButton}
               >
                 Моя страничка
+              </Button>
+
+              <Button
+                component={Link}
+                to={`/sign-up`}
+                variant="contained"
+                className={`${classes.myPageButton} ${classes.secondButton}`}
+                onClick={() => {
+                  localStorage.removeItem("myId");
+
+                  history.push("/");
+                  setPhoto("");
+                }}
+              >
+                Выход
               </Button>
             </>
           ) : (
@@ -71,13 +98,18 @@ function Header(props) {
               </Button>
             </>
           )}
-
-          <button onClick={()=>{setOpenMenu(!openMenu)}} className={`menu__burger ${openMenu && "manu__burger--active"}`}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <Menu isOpen={openMenu} closeMenu={()=>{setOpenMenu(false)}} myId={myId} />
+          <Mobile>
+            <button
+              onClick={() => {
+                setOpenMenu(!openMenu);
+              }}
+              className={`menu__burger ${openMenu && "manu__burger--active"}`}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </Mobile>
         </div>
       </div>
     </header>

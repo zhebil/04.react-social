@@ -1,18 +1,19 @@
 .menu {
-    position: fixed;
-    width: 400px;
-    height: 100vh;
-    right: 0;
-    transform: translate(100%);
-    top: 0;
+    // position: fixed;
+    // width: 400px;
+    // height: 100vh;
+    // right: 0;
+    // transform: translate(100%);
+    // top: 0;
     background-color: #00a6a4;
-    z-index: -1;
-    padding-top: 100px;
+    // z-index: -1;
+    // padding-top: 100px;
     transition: all 0.4s ease;
-    &--active {
-        transform: translate(0);
+    margin-left: auto;
+    margin-right: 15px;
+    &__list {
+        display: flex;
     }
-    &__list {}
     &__item {}
     &__burger {
         display: block;
@@ -40,15 +41,15 @@
         }
     }
     &__link {
-        font-size: 28px;
+        font-size: 18px;
         padding: 30px 15px;
-        border-bottom: 1px solid #ff9331;
+        border-bottom: 2px solid #ff9331;
         width: 100%;
         display: block;
         color: white;
         transition: all 0.4s ease;
         &:hover {
-            background-color: #006C6C;
+            background-color: #006c6c;
         }
     }
     &__item-button {

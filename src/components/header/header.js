@@ -56,6 +56,7 @@ function Header(props) {
           <Menu
             closeMenu={() => {
               setOpenMenu(false);
+              document.body.style.overflow = "visible";
             }}
             logOut={logOut}
             openMenu={openMenu}
@@ -93,6 +94,10 @@ function Header(props) {
             <button
               onClick={() => {
                 setOpenMenu(!openMenu);
+
+                document.body.style.overflow === "hidden"
+                  ? (document.body.style.overflow = "visible")
+                  : (document.body.style.overflow = "hidden");
               }}
               className={`menu__burger ${openMenu && "manu__burger--active"}`}
             >

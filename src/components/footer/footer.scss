@@ -7,7 +7,7 @@
         align-items: center;
         justify-content: space-between;
         min-height: 100px;
-        padding: 20px;
+        padding: 20px 0;
     }
     &__logo {
         display: flex;
@@ -48,4 +48,15 @@
         }
     }
     &__item-img {}
+}
+
+@media (max-width: 768px) {
+    .footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .footer__logo p {
+        font-size: 20px;
+        padding-left: 10px;
+    }
 }

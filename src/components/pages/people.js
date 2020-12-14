@@ -30,7 +30,7 @@ function People({ jsonPlaceholderService }) {
       <div className="container">
         <div className="peoples__inner">
           <GoBack path="/" />
-          <h1 className="peoples__title title">People Page</h1>
+          <h1 className="peoples__title title">Пользователи:</h1>
           <ul className="peoples__list">
             {users.map((item) => {
               return <PeopleCard key={item.id} people={item} />;

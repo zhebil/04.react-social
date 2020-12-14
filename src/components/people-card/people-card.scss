@@ -1,4 +1,9 @@
 .peoples {
+    &__title {
+        @media (max-width: 768px) {
+            margin-bottom: 10px;
+        }
+    }
     &__list {
         display: flex;
         flex-wrap: wrap;
@@ -9,6 +14,15 @@
         max-width: calc(33.333% - 20px);
         margin: 15px 10px;
         display: flex;
+        @media (max-width: 1200px) {
+            flex: calc(50% - 20px) 0 1;
+            max-width: calc(50% - 20px);
+        }
+        @media (max-width: 768px) {
+            flex: 100% 0 1;
+            max-width: 100%;
+            margin: 5px 0;
+        }
     }
     &__photo {}
     &__descr {
@@ -26,6 +40,31 @@
     &__link {
         display: flex;
         justify-content: space-between;
+        @media (max-width: 1200px) {
+            justify-content: flex-start;
+            >*:not(:last-child) {
+                margin-right: 10px;
+            }
+        }
+        @media (max-width: 991px) {
+            >*:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+            justify-content: space-between;
+            >*:not(:last-child) {
+                flex: calc(50% - 5px) 0 1;
+                max-width: calc(50% - 5px);
+                margin: 0;
+                margin-bottom: 10px;
+            }
+            >*:last-child {
+                flex: 100% 0 1;
+                max-width: 100%;
+            }
+        }
     }
 }
 

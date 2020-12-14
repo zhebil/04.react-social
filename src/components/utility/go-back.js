@@ -21,7 +21,7 @@ function GoBack({ path, history }) {
         e.preventDefault();
         history.goBack();
       }}
-      className="icon-link"
+      className="icon-link icon-link--back"
       to={path}
     >
       <IconButton className={classes.arrowBack} aria-label="go back">

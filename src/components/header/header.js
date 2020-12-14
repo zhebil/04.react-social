@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Logo } from "../icons";
 import Menu from "../menu";
 import { withJsonPlaceholderService } from "../hoc";
-import { Mobile } from "../utility/media";
+import { TabletMobile, TabletDesktop } from "../utility/media";
 const useStyles = makeStyles(() => ({
   avatar: {
     width: "70px",
@@ -17,15 +17,10 @@ const useStyles = makeStyles(() => ({
   myPageButton: {
     backgroundColor: "#ff9331",
     color: "white",
+    width: 110,
+    height: 40,
     "&:hover": {
       backgroundColor: "#a65810",
-    },
-  },
-  secondButton: {
-    backgroundColor: "#a65810",
-    marginLeft: "15px",
-    "&:hover": {
-      backgroundColor: "#ff9331",
     },
   },
 }));
@@ -43,6 +38,11 @@ function Header(props) {
     }
   }, [props.jsonPlaceholderService, myId]);
   const classes = useStyles();
+  const logOut = () => {
+    localStorage.removeItem("myId");
+    history.push("/");
+    setPhoto("");
+  };
   return (
     <header className="header">
       <div className="container">
@@ -57,37 +57,28 @@ function Header(props) {
             closeMenu={() => {
               setOpenMenu(false);
             }}
+            logOut={logOut}
+            openMenu={openMenu}
             myId={myId}
           />
           {myId ? (
             <>
               <Avatar src={userPhoto} alt="ava" className={classes.avatar} />
-              <Button
-                variant="contained"
-                component={Link}
-                to={`/home/${myId}`}
-                className={classes.myPageButton}
-              >
-                Моя страничка
-              </Button>
 
-              <Button
-                component={Link}
-                to={`/sign-up`}
-                variant="contained"
-                className={`${classes.myPageButton} ${classes.secondButton}`}
-                onClick={() => {
-                  localStorage.removeItem("myId");
-
-                  history.push("/");
-                  setPhoto("");
-                }}
-              >
-                Выход
-              </Button>
+              <TabletDesktop>
+                <Button
+                  component={Link}
+                  to={`/sign-up`}
+                  variant="contained"
+                  className={`${classes.myPageButton}`}
+                  onClick={logOut}
+                >
+                  Выход
+                </Button>
+              </TabletDesktop>
             </>
           ) : (
-            <>
+            <TabletDesktop>
               <Button
                 variant="contained"
                 component={Link}
@@ -96,9 +87,9 @@ function Header(props) {
               >
                 Регистрация
               </Button>
-            </>
+            </TabletDesktop>
           )}
-          <Mobile>
+          <TabletMobile>
             <button
               onClick={() => {
                 setOpenMenu(!openMenu);
@@ -109,7 +100,7 @@ function Header(props) {
               <span></span>
               <span></span>
             </button>
-          </Mobile>
+          </TabletMobile>
         </div>
       </div>
     </header>

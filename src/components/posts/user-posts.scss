@@ -12,3 +12,24 @@
     }
     &__body {}
 }
+
+@media (max-width: 991.98px) {
+    .post-item__user-name {
+        font-size: 20px;
+    }
+    .post-item__title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-item__title {
+        font-size: 20px;
+        line-height: 120%;
+        text-align: left;
+    }
+    .right__link {
+        padding: 0;
+    }
+}

@@ -3,7 +3,9 @@
 }
 
 .post-item {
-    margin-bottom: 30px;
+    &:not(:nth-last-child(2)) {
+        margin-bottom: 30px;
+    }
     &__head {
         display: flex;
         border-bottom: 1px solid #b2b2b2;

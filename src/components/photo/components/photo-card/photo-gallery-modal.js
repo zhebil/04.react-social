@@ -20,6 +20,10 @@ const useStyle = makeStyles(() => ({
     "&:hover svg": {
       opacity: "1",
     },
+    "@media(max-width: 768px)": {
+      width: 50,
+      height: 50,
+    },
   },
   icon: {
     fontSize: "40px",
@@ -41,7 +45,6 @@ const PhotoGalleryModal = (props) => {
       open={open}
       onClose={handleClose}
       closeAfterTransition
-      
       aria-labelledby="Фотогалерея"
     >
       <Fade in={open}>
@@ -54,11 +57,13 @@ const PhotoGalleryModal = (props) => {
             lazy={{ loadPrevNext: true }}
             slidesPerView={1}
             navigation
+            className={"modal__swiper"}
             initialSlide={initialSlide}
+            breakpoints={{}}
           >
             {photos.map((item) => {
               return (
-                <SwiperSlide key={item.id}>
+                <SwiperSlide className={"modal__swiper-slide"} key={item.id}>
                   <div className="photo-gallery__slide">
                     <img src={item.largeImageURL} alt="" />
                   </div>

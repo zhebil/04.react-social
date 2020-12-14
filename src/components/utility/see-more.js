@@ -20,7 +20,7 @@ export default function SeeMore({ setMore, more}) {
   const classes = useStyles();
   return (
     <div className="icon-link">
-      {more ? "Hide" : "See more"}
+      {more ? "Скрыть" : "Больше"}
       <IconButton
         onClick={() => {
           setMore();

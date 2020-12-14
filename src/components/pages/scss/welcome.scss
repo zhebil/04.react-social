@@ -1,4 +1,13 @@
 .welcome {
+    height: 100%;
+    margin: 0;
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     &__inner {}
     &__title {}
     &__login {
@@ -9,6 +18,9 @@
     }
     &__login-text {
         font-size: 16px;
-        margin: 15px 0
+        margin: 15px 0;
+        @media (max-width: 768px) {
+            margin: 5px 0;
+        }
     }
 }

@@ -14,15 +14,18 @@ const UserPhotos = (props) => {
   const [modal, setModal] = useState({ open: false, init: 0 });
   useEffect(() => {
     let mount = true;
-    jsonPlaceholderService.getUserPhotos(id).then((data) => {
-      if (mount) {
-        setPhotoData(data.hits);
-        setFetch({ loading: false, error: false });
-      }
-    }).catch(e=> {
-      console.log(e);
-      setFetch({loading: false, error: true})
-    });;
+    jsonPlaceholderService
+      .getUserPhotos(id)
+      .then((data) => {
+        if (mount) {
+          setPhotoData(data.hits);
+          setFetch({ loading: false, error: false });
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        setFetch({ loading: false, error: true });
+      });
     return () => {
       mount = false;
     };
@@ -34,16 +37,20 @@ const UserPhotos = (props) => {
     return <ErrorIndicator />;
   }
   return (
-    <>
-      <div className="page-block photos">
+    <div className="photos">
+      <div className="page-block">
         <h2 className="photos__title page-block__title">Мои фото</h2>
         <div className="photos__body">
           <Swiper
-            slidesPerView={4}
-            // freeMode={true}
+            slidesPerView={2}
+            freeMode={true}
             // freeModeMomentum={false}
             // freeModeMomentumBounce={false}
             watchOverflow={true}
+            breakpoints={{
+              1200: { slidesPerView: 4 },
+              768: {slidesPerView: 3}
+            }}
           >
             {photoData.map((item, i) => {
               return (
@@ -73,7 +80,7 @@ const UserPhotos = (props) => {
         initialSlide={modal.init}
         setOpen={setModal}
       />
-    </>
+    </div>
   );
 };
 export default withJsonPlaceholderService()(UserPhotos);

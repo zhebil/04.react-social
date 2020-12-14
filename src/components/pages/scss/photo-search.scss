@@ -1,12 +1,12 @@
 .search {
     &__body {}
-    &__row {
-        float: left;
-        width: calc(100% - 240px);
-    }
     &__panel {
+        float: left;
+        width: calc(75% - 20px);
+    }
+    &__aside {
         float: right;
-        width: 220px;
+        width: 25%;
         position: sticky;
         top: 15px;
     }
@@ -14,6 +14,66 @@
         float: left;
         margin-top: 15px;
         margin-bottom: 20px;
-        width: calc(100% - 240px);
+        width: calc(75% - 20px);
+    }
+    &__row {
+        display: flex;
+        align-items: baseline;
+        @media (max-width: 768px) {
+            margin-bottom: 5px;
+        }
+    }
+    &__filters {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    &__message,
+    &__error {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search__body {
+        display: block;
+        >* {
+            width: 100%;
+            float: none;
+            margin-bottom: 15px;
+        }
+    }
+    .search__filters {
+        margin-bottom: 0;
+    }
+    .search__burger {
+        width: 20px;
+        height: 20px;
+        span {
+            height: 3px;
+        }
+    }
+    .jc-sb {
+        justify-content: space-between;
+        align-items: center;
+    }
+    .search__aside {
+        .search__row {
+            margin-bottom: 15px;
+        }
+        button {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .search__panel {
+        .search__row {
+            flex-direction: column;
+            >* {
+                margin-left: auto;
+                margin-bottom: 10px;
+            }
+        }
     }
 }

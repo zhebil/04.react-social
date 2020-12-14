@@ -20,7 +20,9 @@ html {
     align-items: center;
     width: fit-content;
     color: #ff9331;
-    margin-bottom: 20px;
+    &--back {
+        margin-bottom: 20px;
+    }
 }
 
 .page-block {
@@ -61,7 +63,7 @@ html {
     &:focus,
     &:active {
         text-decoration: underline;
-        color: #1A4678;
+        color: #1a4678;
     }
 }
 
@@ -93,4 +95,45 @@ html {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+main {
+    flex: 100% 0 1;
+}
+
+@media (max-width: 768px) {
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        clip: rect(0 0 0 0);
+    }
+}
+
+@media (max-width: 991.98px) {
+    .title {
+        font-size: 24px;
+    }
+    .page-block__title {
+        font-size: 20px;
+    }
+    section {
+        margin: 30px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        margin: 20px 0;
+    }
+    .icon-link--back {
+        margin-bottom: 10px;
+    }
+    .page-block__title {
+        font-size: 18px;
+    }
 }

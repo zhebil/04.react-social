@@ -1,0 +1,19 @@
+.not-found {
+    height: 100%;
+    margin: 0;
+    &__text {
+        font-size: 45px;
+        text-align: center;
+    }
+    &__number {
+        font-size: 170px;
+        color: #ff9331;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+}

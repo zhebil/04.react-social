@@ -10,6 +10,7 @@
             // background-color: #ff9331;
             border-radius: 10px;
             margin: 10px 0;
+            align-items: center;
         }
     }
     &__row {
@@ -73,4 +74,17 @@
 .item-exit-active {
     opacity: 0;
     transition: opacity 500ms ease-in;
+}
+
+@media (max-width: 768px) {
+    .todo__row {
+        flex-direction: column;
+    }
+    .todo__filters {
+        margin-left: auto;
+    }
+    .todo__item {
+        align-items: flex-start;
+        font-size: 14px;
+    }
 }

@@ -31,3 +31,15 @@
         fill: #ff9331
     }
 }
+
+@media (max-width: 991px) {
+    .header__logo {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 540px) {
+    .header__logo p {
+        font-size: 20px;
+    }
+}

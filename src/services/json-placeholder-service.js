@@ -2,7 +2,7 @@ export default class JsonPlaceholderService {
   _apiBase = "https://jsonplaceholder.typicode.com";
   _apiPhotoBase =
     "https://pixabay.com/api/?key=19060740-28e07d1b59a78c5b024055f9e";
-  pixabayKey = "?key=19060740-28e07d1b59a78c5b024055f9e";
+  pixabayKey = "?key=19060740-28e07d1b59a78c5b024055f9e&safesearch=true";
   getResourse = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
